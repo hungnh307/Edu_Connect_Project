@@ -8,6 +8,6 @@ public class MainInstaller : MonoInstaller
     public override void InstallBindings()
     {
         base.InstallBindings();
-        
+        this.Container.Bind<GameManager>().FromComponentInHierarchy().AsSingle().NonLazy();
     }
 }
