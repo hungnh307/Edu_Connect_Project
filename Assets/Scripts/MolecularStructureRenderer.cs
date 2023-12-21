@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class MolecularStructureRenderer : MonoBehaviour
@@ -60,6 +61,8 @@ public class MolecularStructureRenderer : MonoBehaviour
                 moleculeData.atoms.coords._3d[atomIndex2 * 3 + 2]
             );
 
+            Vector3 position_3 = new Vector3(
+                )
             Vector3 bondPosition = (position1 + position2) / 2;
 
             float bondLength = Vector3.Distance(position1, position2);
