@@ -1,0 +1,11 @@
+fileFormatVersion: 2
+<<<<<<<< HEAD:Assets/Scenes/3_CHEMISTRY.unity.meta
+guid: 61000ac6f0bbab040bb7ddbe2f685387
+========
+guid: 2cda990e2423bbf4892e6590ba056729
+>>>>>>>> c7d14ac (Auxiliary commit to cherry-pick individual files from c8f5c0aea1994a74e1d1ecb4b9935084e2b2038a):Assets/Scenes/Solar System.unity.meta
+DefaultImporter:
+  externalObjects: {}
+  userData: 
+  assetBundleName: 
+  assetBundleVariant: 
