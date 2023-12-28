@@ -54,6 +54,7 @@ public class SliderLoading : MonoBehaviour
     {
         await this.CompleteLoading();
         Resources.UnloadUnusedAssets().ToUniTask().Forget();
-        SceneManager.LoadScene("2_MainScene");
+        this.gameObject.SetActive(false);
+        //SceneManager.LoadScene("2_MainScene");
     }
 }
