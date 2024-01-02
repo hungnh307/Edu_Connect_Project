@@ -9,5 +9,6 @@ public class MainInstaller : MonoInstaller
     {
         base.InstallBindings();
         this.Container.Bind<GameManager>().FromComponentInHierarchy().AsSingle().NonLazy();
+        Container.BindFactory<MainMenu, MainMenuFactory>();
     }
 }
