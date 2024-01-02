@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
 
-public class PopupChoseSubject : MonoBehaviour
+public class PopupChoseSubject : Popup
 {
     [SerializeField] private Button choseSubjectBtn;
     [SerializeField] private Button optionBtn;

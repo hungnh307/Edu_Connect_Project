@@ -12,14 +12,6 @@ public class MainMenu : Popup
     [SerializeField] private Button aboutUsBtn;
     private                  Popup  _popup;
     
-    private readonly GameManager gameManager;
-
-    // Constructor để inject GameManager
-    public MainMenu(GameManager gameManager)
-    {
-        this.gameManager = gameManager;
-    }
-    
     private void Start()
     {
         choseSubjectBtn.onClick.AddListener(OpenPopupChoseSubject);
@@ -29,10 +21,10 @@ public class MainMenu : Popup
 
     private void OpenPopupChoseSubject()
     {
-        Debug.LogError(gameManager.Canvas.name);
         Popup prefab = Resources.Load<Popup>("UI/ChoseSubject");
-        _popup = Instantiate(prefab, gameManager.Canvas.transform);
-        _popup.Open(gameManager.Canvas);
+        Debug.LogError(prefab.name);
+        _popup = Instantiate(prefab, GameManager.Instance.Canvas.transform);
+        _popup.Open(GameManager.Instance.Canvas);
     }
 
     private void OpenOption() { }

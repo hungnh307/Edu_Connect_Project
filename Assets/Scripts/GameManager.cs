@@ -5,26 +5,16 @@ using Unity.VisualScripting;
 using UnityEngine;
 using Zenject;
 
-public class GameManager : MonoBehaviour
+public class GameManager : ThePattern.Unity.Singleton<GameManager>
 {
     [SerializeField] public Canvas Canvas;
     private                  Popup  _popup;
     
-    private MainMenuFactory mainMenuFactory;
-
-    [Inject]
-    public void Contruct(MainMenuFactory mainMenuFactory)
-    {
-        this.mainMenuFactory = mainMenuFactory;
-    }
-    
     private void Start()
     {
         
-        MainMenu main = mainMenuFactory.Create();
-        
-        // Popup prefab = Resources.Load<Popup>("UI/MainMenu");
-        // _popup = Instantiate(prefab, Canvas.transform);
-        //  _popup.Open(Canvas);
+        Popup prefab = Resources.Load<Popup>("UI/MainMenu");
+        _popup = Instantiate(prefab,GameManager.Instance.Canvas.transform);
+         _popup.Open(GameManager.Instance.Canvas);
     }
 }
