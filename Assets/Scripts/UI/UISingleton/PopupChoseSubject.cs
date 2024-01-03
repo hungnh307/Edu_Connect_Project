@@ -6,19 +6,24 @@ using UnityEngine.UI;
 public class PopupChoseSubject : Popup
 {
     [SerializeField] private Button choseSubjectBtn;
-    [SerializeField] private Button optionBtn;
-    [SerializeField] private Button aboutUsBtn;
+    [SerializeField] private Button backBtn;
 
-    private void Awake()
+    public void InitButton()
     {
-        choseSubjectBtn.onClick.AddListener(OpenPopupChoseSubject);
-        optionBtn.onClick.AddListener(OpenPopupChoseSubject);
-        aboutUsBtn.onClick.AddListener(OpenPopupChoseSubject);
+        SetOnclick();
     }
 
+    private void SetOnclick()
+    {
+        this.backBtn.onClick.AddListener(this.BackBtn);
+    }
     private void OpenPopupChoseSubject() { }
 
-    private void OpenOption() { }
+    private void BackBtn()
+    {
+        GameManager.Instance.mainMenuPopup.ShowPopup();
+        
+    }
 
     private void OpenPopupAboutUs() { }
 }

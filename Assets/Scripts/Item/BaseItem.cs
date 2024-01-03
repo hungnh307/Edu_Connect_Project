@@ -5,10 +5,17 @@ namespace Item
 
     public class BaseItem : MonoBehaviour
     {
-        private bool    isDragging = false;
-        [SerializeField] private Camera  mainCamera;
-        private Vector3 offset;
-        
+        [SerializeField] private string  info;
+        [SerializeField] private ItemModel  item;
+        private                  bool    isDragging = false;
+        private                  Camera  mainCamera;
+        private                  Vector3 offset;
+
+        private void Start()
+        {
+            mainCamera = GameManager.Instance.Camera;
+        }
+
         void Update()
         {
             HandleInput();
@@ -25,7 +32,8 @@ namespace Item
                 {
                     if (hit.collider.gameObject == gameObject)
                     {
-                        isDragging = true;
+                        GameManager.Instance.screenInfo.UpdateText(nameText: this.item.itemName, infoText: this.item.info);
+                        isDragging                           = true;
                         // Tính và lưu trữ sự chênh lệch giữa vị trí chuột và vị trí đối tượng
                         offset = transform.position - hit.point;
                     }
@@ -34,7 +42,7 @@ namespace Item
 
             if (Input.GetMouseButtonUp(0))
             {
-                isDragging = false;
+                isDragging                           = false;
             }
 
             if (isDragging)
@@ -55,5 +63,11 @@ namespace Item
                 transform.position = targetPosition;
             }
         }
+    }
+[Serializable]
+    public class ItemModel
+    {
+        public string itemName;
+        public string info;
     }
 }

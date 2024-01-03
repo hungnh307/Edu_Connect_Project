@@ -8,12 +8,18 @@ public class Popup : MonoBehaviour
     public Color backgroundColor = new Color(10.0f / 255.0f, 10.0f / 255.0f, 10.0f / 255.0f, 0.6f);
 
     protected GameObject _background;
-    private float _destroyTime = 0.5f;
+    private   float      _destroyTime = 0.5f;
 
-    public void Open(Canvas canvas)
+    public void Open(Canvas canvas) { AddBackground(canvas); }
+
+    public virtual void HidePopup()
     {
-        AddBackground(canvas);
+        this.gameObject.SetActive(false);
+        _background.GetComponent<Image>().color = new Color(0, 0, 0, 0);
     }
+
+    public virtual void ShowPopup() { this.gameObject.SetActive(true); }
+
     public virtual void Close()
     {
         //RemoveBackground();
@@ -23,8 +29,10 @@ public class Popup : MonoBehaviour
             animator.Play("Close");
             Debug.Log("Play Close ");
         }
+
         StartCoroutine(RunPopupDestroy());
     }
+
     private IEnumerator RunPopupDestroy()
     {
         yield return new WaitForSeconds(_destroyTime);
@@ -39,21 +47,22 @@ public class Popup : MonoBehaviour
         bgTex.Apply();
 
         _background = new GameObject("PopupBackground");
-        var image = _background.AddComponent<Image>();
-        var rect = new Rect(0, 0, bgTex.width, bgTex.height);
+        var image  = _background.AddComponent<Image>();
+        var rect   = new Rect(0, 0, bgTex.width, bgTex.height);
         var sprite = Sprite.Create(bgTex, rect, new Vector2(0.5f, 0.5f), 1);
         image.material.mainTexture = bgTex;
-        image.sprite = sprite;
+        image.sprite               = sprite;
         var newColor = image.color;
         image.color = newColor;
         image.canvasRenderer.SetAlpha(0.0f);
         image.CrossFadeAlpha(1.0f, 0.4f, false);
 
-        _background.transform.localScale = new Vector3(1, 1, 1);
+        _background.transform.localScale                    = new Vector3(1, 1, 1);
         _background.GetComponent<RectTransform>().sizeDelta = canvas.GetComponent<RectTransform>().sizeDelta;
         _background.transform.SetParent(canvas.transform, false);
         _background.transform.SetSiblingIndex(transform.GetSiblingIndex());
     }
+
     private void RemoveBackground()
     {
         var image = _background.GetComponent<Image>();

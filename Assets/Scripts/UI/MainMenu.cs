@@ -15,7 +15,7 @@ public class MainMenu : Popup
     private void Start()
     {
         choseSubjectBtn.onClick.AddListener(OpenPopupChoseSubject);
-        optionBtn.onClick.AddListener(OpenPopupChoseSubject);
+        optionBtn.onClick.AddListener(OpenOption);
         aboutUsBtn.onClick.AddListener(OpenPopupChoseSubject);
     }
 
@@ -25,9 +25,13 @@ public class MainMenu : Popup
         Debug.LogError(prefab.name);
         _popup = Instantiate(prefab, GameManager.Instance.Canvas.transform);
         _popup.Open(GameManager.Instance.Canvas);
+        
     }
 
-    private void OpenOption() { }
+    private void OpenOption()
+    {
+        this.HidePopup();
+    }
 
     private void OpenPopupAboutUs() { }
 }
