@@ -14,7 +14,9 @@ public class GameManager : ThePattern.Unity.Singleton<GameManager>
 
     public DisplayModule screenInfo;
     public DisplayModule screenAttack;
-    
+
+    public LevelController curentLevel;
+        
     
     private void Start()
     {

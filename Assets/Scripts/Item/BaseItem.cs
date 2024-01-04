@@ -5,7 +5,6 @@ namespace Item
 
     public class BaseItem : MonoBehaviour
     {
-        [SerializeField] private string  info;
         [SerializeField] private ItemModel  item;
         private                  bool    isDragging = false;
         private                  Camera  mainCamera;
@@ -61,6 +60,15 @@ namespace Item
                 Vector3 targetPosition = new Vector3(hit.point.x + offset.x, transform.position.y, hit.point.z + offset.z);
                 // Cập nhật vị trí của đối tượng
                 transform.position = targetPosition;
+            }
+        }
+
+        private void OnTriggerEnter(Collider other)
+        {
+            Debug.LogError("adadada");
+            if (other.CompareTag("Molecules"))
+            {
+                GameManager.Instance.curentLevel.OnChemicalReaction();
             }
         }
     }
